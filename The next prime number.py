@@ -6,9 +6,20 @@ def main():
     my_iter_prime = iter(list_prime())
     print('Приветствую вас! Вы хотите узнать простые числа по порядку?')
     per = input('Введите "д" - для продолжения, или "н" - что бы закончить: ')
+    print()
     while per.lower() == 'д':
-        print(next(my_iter_prime))
-        per = input('Желаете узнать следующее простое число: ')
+        try:
+            print(next(my_iter_prime))
+            per = input('Желаете узнать следующее простое число: ')
+        except StopIteration:
+            print()
+            print('Числа закончились.')
+            per = input('Желаете начать сначала?: ')
+            print()
+            if per.lower() == 'д':
+                my_iter_prime = iter(list_prime())
+                print(next(my_iter_prime))
+                per = input('Желаете узнать следующее простое число: ')
     print()
     print('До свидания')
 
@@ -26,9 +37,10 @@ def is_prime(A):
 
 
 def list_prime():
-    """Данная функция создает список с простыми числами по порядку"""
+    """Данная функция создает список с простыми числами по порядку. Можно указать диапазон, к котором будут выдаваться
+    простые числа."""
     list_primes = []
-    for j in range(1, 1000):
+    for j in range(1, 10000):  # диапазон, в котором будут выдаваться простые числа
         is_prime(j)
         if is_prime(j):
             list_primes.append(j)
