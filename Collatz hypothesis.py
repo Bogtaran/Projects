@@ -5,25 +5,24 @@
 
 
 def collatz_hypothesis(n):
-    count = 0
     if n <= 1:
         return 'Число должно быть больше 1'
-    elif n%2 == 0:
-        a = positive(n)
-        count +=1
-    elif n%2 != 0:
-        a = negative(n)
-        count +=1
+    count = 1
+    num = chec(n)
+    while num != 1:
+        num = chec(num)
+        count += 1
+    return count
 
 
-
-def positive(n):
-    return n / 2
-
-
-def negative(n):
-    return n * 3 + 1
+def chec(n):
+    if n % 2 == 0:
+        positive = n / 2
+        return positive
+    elif n % 2 != 0:
+        negative = n * 3 + 1
+        return negative
 
 
 if __name__ == '__main__':
-    main()
+    print(collatz_hypothesis(3))
