@@ -7,22 +7,21 @@
 def collatz_hypothesis(n):
     if n <= 1:
         return 'Число должно быть больше 1'
-    count = 1
-    num = chec(n)
-    while num != 1:
-        num = chec(num)
-        count += 1
-    return count
+
+    return chec(n)
 
 
 def chec(n):
-    if n % 2 == 0:
-        positive = n / 2
-        return positive
-    elif n % 2 != 0:
-        negative = n * 3 + 1
-        return negative
+    count = 0
+    while n != 1:
+        if n % 2 == 0:
+            n = n / 2
+            count += 1
+        else:
+            n = (n * 3 + 1) / 2
+            count += 2
+    return count
 
 
 if __name__ == '__main__':
-    print(collatz_hypothesis(3))
+    print(collatz_hypothesis(6))
