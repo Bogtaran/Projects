@@ -29,11 +29,12 @@ def is_prime(A):
     if A == 1 or A == 2 or A == 3:
         return True
     for i in range(2, A):
-        while A % i != 0:
+        if i == A - 1:
+            return True
+        elif A % i != 0:
             i += 1
-            if i == A - 1:
-                return True
-        return False
+        else:
+            return False
 
 
 def list_prime():
@@ -41,7 +42,6 @@ def list_prime():
     простые числа."""
     list_primes = []
     for j in range(1, 10000):  # диапазон, в котором будут выдаваться простые числа
-        is_prime(j)
         if is_prime(j):
             list_primes.append(j)
     return list_primes
