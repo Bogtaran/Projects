@@ -10,7 +10,7 @@ def main():
     lucky_num = []
     count = 0
     for i in range(10, 1000):
-        if lucky_number(i):
+        if lucky_number(i, lucky_num):
             lucky_num.append(i)
             count += 1
             if count == 8:
@@ -26,17 +26,16 @@ def sum_squares_digits(i):
     return numbers
 
 
-def lucky_number(i):
+def lucky_number(i, lucky_num):
     """Данная функция выясняет счастливое число или нет"""
     num = sum_squares_digits(i)
-    if num == 1 or num == 10 or num == 13:
+    if num == 1 or num in lucky_num:
         return True
     elif num == 0:
         return False
     else:
         try:
-            # num = sum_squares_digits(num)
-            lucky_number(num)
+            lucky_number(num, lucky_num)
         except RecursionError:
             return False
 
